@@ -1,0 +1,29 @@
+
+    <div class="px-4 pt-2 my-5 text-center border-bottom">
+      <div class="overflow-hidden" style="max-height: 30vh;">
+        <div class="container px-5">
+          <img src="/blog_poster.jpg" class="img-fluid border rounded-3 shadow-lg heroImage" alt="Example image" width="700" height="500" loading="lazy">
+        </div>
+      </div>
+        <h1 class="display-4 fw-bold mt-4">Technology Stories</h1>
+        <div class="col-lg-6 mx-auto">
+          <p class="lead mb-4">        Explore the latest innovations in the tech world! From groundbreaking advancements in artificial intelligence to the ever-evolving landscape of web development, technology is shaping the future in exciting ways. Stay updated on the latest trends, tools, and techniques that are driving the digital revolution.
+        </p>
+          <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
+            <button type="button" class="btn btn-primary btn-lg px-4 me-sm-3"(click)="onStartReadingClick()">Start Reading</button>
+            <button type="button" class="btn btn-outline-success btn-lg px-4 me-sm-3" data-mdb-ripple-init data-mdb-ripple-color="dark" (click)="toggle()">Subscribe</button>
+          </div>
+          <div *ngIf="isVisible">
+            <form class="subscribeForm" >
+              <div class="form-group">
+                <input type="email"  [(ngModel)]="subscribeEmail" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+              </div>
+              <button type="button" class="btn btn-success  btn-lg px-4 me-sm-3" (click)="onSubmit()">Submit</button>
+            </form>
+          </div>
+          
+        </div>
+       
+      </div>
+
+

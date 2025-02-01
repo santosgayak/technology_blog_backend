@@ -1,0 +1,43 @@
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-12">
+      <h2 class="text-center mb-4">Featured Posts</h2>
+    </div>
+  </div>
+
+  <div class="row">
+    <div
+      class="col-12 col-md-6 col-lg-4 mb-4"
+      *ngFor="let post of blogPosts"
+    >
+      <div class="card h-100 shadow" (click)="navigateToFullBlogPost(post.id)">
+        <div class="card-body">
+          <div class="ratio ratio-16x9 mb-3">
+            <img [src]="post.imageUrl" 
+            (error)="onImageError($event)" 
+            alt="Blog Cover Image" 
+            class="img-fluid" 
+            style="max-width: 100%; height: 100%; border-radius: 5px;">
+          </div>
+          <h4>{{ post.category }}</h4>
+
+          <h3>{{ post.blogTitle }}</h3>
+          <p class="card-text">
+            <strong>Author:</strong> {{ post.authorName }}
+          </p>
+          <p class="card-text">
+            <strong>Read Time:</strong> {{ post.readTime }} minutes
+          </p>
+          <p class="card-text">
+            <strong>{{ post.likes }}</strong>   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-heart-fill" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
+            </svg>
+          </p>
+          
+          <div [innerHTML]="getFirstThreeTags(post.htmlContent)" class="mb-3 posts"></div>
+            <a (click)="navigateToFullBlogPost(post.id)" class="btn btn-link">Read More</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
