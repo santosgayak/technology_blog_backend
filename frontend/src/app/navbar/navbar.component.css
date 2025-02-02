@@ -8,5 +8,11 @@ li a{
     font-weight: bold;
 }
 #createABlog{
-    background-color: rgb(229, 228, 220);
+    background-color: white;
     }
+
+.menus{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

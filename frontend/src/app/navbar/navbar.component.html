@@ -1,44 +1,41 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light p-3">
-  <div class="container-fluid">
-    <!-- Logo -->
-    <a class="navbar-brand" href="#">
-      <img src="/logo.png" alt="logo" width="200px" />
-    </a>
 
-    <!-- Toggler button for mobile view -->
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">
+    <img src="/logo.png" alt="logo" width="200px" />
+  </a>  
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link active" aria-current="page" href="#">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#"(click)="goToBlogsClick()" >Blogs</a>
+      </li>
+      <li>
+
+      </li>
+    </ul>
+    <button (click)="onCreatePostClick()" type="button" class="btn btn-outline-dark btn-lg px-4 me-3" id="createABlog" data-mdb-ripple-init data-mdb-ripple-color="dark">
+      Create A Blog
     </button>
 
-    <!-- Navbar Links -->
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#"(click)="goToBlogsClick()" >Blogs</a>
-        </li>
-      </ul>
+    <!-- Get Started Button (Visible if user is not logged in) -->
+    <button *ngIf="!user" type="button" class="btn btn-outline-primary btn-lg px-4 me-3" (click)="navigateToGetStarted()">Get Started</button>
 
-      <!-- Navbar Right (Buttons and User Info) -->
-      <div class="d-flex align-items-center">
-
-        <!-- Create a Blog Button (Visible only if logged in) -->
-        <button (click)="onCreatePostClick()" type="button" class="btn btn-outline-dark btn-lg px-4 me-3" id="createABlog" data-mdb-ripple-init data-mdb-ripple-color="dark">
-          Create A Blog
-        </button>
-
-        <!-- Get Started Button (Visible if user is not logged in) -->
-        <button *ngIf="!user" type="button" class="btn btn-outline-primary btn-lg px-4 me-3" (click)="navigateToGetStarted()">Get Started</button>
-
-        <!-- User info and Logout Button (Visible if user is logged in) -->
-        <div *ngIf="user" class="d-flex align-items-center">
-          <span class="lead me-3">Welcome, {{ user.firstName }}</span>
-          <button (click)="logout()" class="btn btn-link -danger btn-sm">Logout</button>
-        </div>
-        
-      </div>
+    <!-- User info and Logout Button (Visible if user is logged in) -->
+    <div *ngIf="user" class="d-flex align-items-center">
+      <span class="lead me-3">Welcome, {{ user.firstName }}</span>
+      <button (click)="logout()" class="btn btn-link -danger btn-sm">Logout</button>
     </div>
-  </div>
+
+ 
+    </div>
 </nav>
