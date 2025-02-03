@@ -1,0 +1,142 @@
+.blogs-container{
+  border-top: 5px solid black;
+  padding-top: 75px;
+
+}
+
+h2{
+  font-size: 50px;
+  font-weight: 700;
+}
+.card-wrapper{
+  display: flex;
+  flex-direction: row !important;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  width: 100%;
+}
+.card{
+  width: 620px;
+  height: 185px;
+  padding: 20px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    display: flex;
+  align-items: flex-start;
+  justify-content: left;
+  flex-direction: row-reverse;
+  gap: 20px;
+  transition: 0.2s ease;
+  cursor: pointer;
+    box-shadow: rgba(44, 92, 146, 0.9) 0px 4px 12px;
+
+}
+.card:hover{
+  scale: 1.05;
+  animation: glowingBorder 3s infinite;
+  transition: box-shadow 0.2s ease-in-out;
+  color:white;
+  background-color: rgb(34, 32, 32);
+
+}
+/*.card-wrapper:hover>:not(:hover){
+  filter: blur(0.5px);
+
+}*/
+
+.card img{
+  width: 600px;
+  height: 100px !important;
+}
+.bi{
+  margin-right: 10px;
+}
+
+#noBlogFound{
+  text-align: center;
+  font-weight: bold;
+  font-size: 25px;
+}
+h4{
+  font-size: 12px;
+  font-weight: bold;
+  font-style: italic;
+}
+
+
+@keyframes glowingBorder {
+  0% {
+    border-color: #ffa1a1;
+    box-shadow: 0 0 4px #ffa1a1;
+  }
+  25% {
+    border-color: #a1caff;
+    box-shadow: 0 0 9px #a1caff;
+  }
+  50% {
+    border-color: #a1ffcc;
+    box-shadow: 0 0 14px #a1ffcc;
+  }
+  75% {
+    border-color: #ffd4a1;
+    box-shadow: 0 0 19px #ffd4a1;
+  }
+  100% {
+    border-color: #ffa1a1;
+    box-shadow: 0 0 24px #ffa1a1;
+  }
+}
+
+#searchBlog {
+  border: 2px solid transparent;
+  border-radius: 5px;
+  padding: 8px;
+  font-size: 16px;
+  outline: none;
+  animation: glowingBorder 3s infinite;
+  transition: box-shadow 0.2s ease-in-out;
+}
+
+#searchBlog:focus {
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.2); 
+}
+.categories{
+  display: flex;
+  justify-content: left;
+  flex-wrap: wrap;
+  margin-left: 40px;
+  gap: 0;
+}
+.categories>*{
+  width: 225px;
+  text-align: left;
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+  padding: 0px;
+  margin: 5px;
+  text-align: center;
+
+}
+.categories>*:hover{
+  color: rgb(45, 45, 184);
+  text-decoration: underline;
+  scale: 1.1;
+ 
+}
+#All{
+  color:green;
+}
+.likesCount{
+  display: flex;
+  align-items: center;
+  gap:0px;
+}
+.likesAndread{
+  display: flex;
+  gap:10px;
+}
+#categoryTitle{
+  color: green;
+}

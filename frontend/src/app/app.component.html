@@ -1,0 +1,34 @@
+<div class="container bg-light">
+  <!-- Navbar component with dynamic form visibility toggle -->
+  <app-navbar [isVisible]="isVisible" (toggleForm)="toggleFormVisibility()" (goToBlogs)="scrollToBlogPost()"></app-navbar>
+
+  <!-- Show the full blog post if the route is "/fullBlogPost" -->
+  <ng-container *ngIf="isGetStarted">
+    <app-signup></app-signup>
+  </ng-container>
+  <!-- Show the blog form if isVisible is true -->
+  <app-blogform 
+    (toggleForm)="toggleFormVisibility()" 
+    (formSubmitted)="handleFormSubmit($event)"
+    *ngIf="isVisible">
+  </app-blogform>
+
+  <!-- Show the full blog post if the route is "/fullBlogPost" -->
+  <ng-container *ngIf="isFullBlogPostRoute">
+    <app-full-blog-post ></app-full-blog-post>
+
+  </ng-container>
+
+  <!-- Show these components when we're NOT on the /getStarted route -->
+  <ng-container *ngIf="!isGetStarted && !isFullBlogPostRoute">
+    <app-hero  (startReading)="scrollToBlogPost()"></app-hero>
+    <app-featured-post></app-featured-post>
+    <div #blogPostSection>
+      <app-blogpost [blogPosts]="blogPosts"></app-blogpost>
+    </div>
+    <app-blogpagination></app-blogpagination>
+  </ng-container>
+
+  <!-- Footer component -->
+  <app-footer></app-footer>
+</div>

@@ -1,0 +1,71 @@
+<div class="blogPostContainer" id="blogContainer">
+    <article class="blog-post">
+      <!-- Render the HTML content of each post -->
+      <h1 class="post-title">{{blogPost.blogTitle}}</h1>
+      
+      <div class="image-container">
+        <img [src]="blogPost.imageUrl" 
+            (error)="onImageError($event)" 
+            alt="Blog Cover Image" 
+            class="post-image">
+      </div>
+    
+      <div [innerHTML]="blogPost.htmlContent" class="post-content"></div>
+      
+      <div class="post-meta">
+        <p><strong>Author:</strong> {{ blogPost.authorName }}</p>
+        <p><strong>Read Time:</strong> {{ blogPost.readTime }} minutes</p>
+        <p><strong>Post likes:</strong> {{ blogPost.likes }} likes</p>
+      </div>
+      
+      <div class="giveMeaLike">
+        <i class="fa-solid fa-heart"></i>
+
+        <button type="button" class="btn-like" (click)="addBlogLikes(blogPost.id)">Give a like</button>
+        <button type="button" class="btn-subscribe" (click)="addBlogLikes(blogPost.id)">Subscribe for more</button>
+
+      </div>
+    
+    
+      <p class="thank-you">Thank you for reading! Stay tuned for more updates.</p>
+    </article>
+  
+    <div class="row d-flex justify-content-center comments">
+      <div class="col-md-8 col-lg-6">
+        <div class="card shadow-0 border" style="background-color: #f0f2f5;">
+          <div class="card-body p-4">
+            <!-- Input for adding a comment -->
+            <label class="form-label addANote" for="addANote" (click)="toggle()">+ Add a note</label>
+
+            <div *ngIf="isVisible" class="form-outline mb-4">
+              <input type="text"  [(ngModel)]="newCommentContent" id="addANote" class="form-control" placeholder="Type comment..." />
+             
+              <button (click)="addComment()" class="btn  btn-outline-primary mt-3">Submit</button>
+
+            </div>
+    
+            <!-- Loop through the comments -->
+            <div class="card commentBox" *ngFor="let comment of blogComments">
+              <div class="card-body commentsBox">
+                <!-- Display comment content -->
+                <p id="userComment">{{ comment.content }}</p>
+                
+                <!-- Commenter info and upvote button -->
+                <div class="d-flex justify-content-between">
+                  <div class="d-flex flex-row align-items-center">
+                    <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(32).webp" alt="avatar" width="25" height="25" />
+                    <p class="small mb-0 ms-2 userCommenter">{{ comment.authorName }}</p>
+                  </div>
+                  <div class="d-flex flex-row align-items-center">
+                    <p class="small text mb-0 upvotes">Upvotes: {{ comment.upvotes }}</p>
+                    <button class="likeBtn" (click)="addCommentLike(blogPost.id,comment._id)"><i class="far fa-thumbs-up ms-2 fa-xs text-body" style="margin-top: -0.16rem;"></i></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </div>
