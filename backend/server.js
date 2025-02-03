@@ -44,16 +44,18 @@ async function sendEmail(title,imageUrl,content,id,users)
  {
     
   const emailTemplate = `<!DOCTYPE html>
-  <html lang="en">
+<html lang="en">
   <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>Email Template</title>
+      <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
       <style>
+
           body {
-              font-family: Arial, sans-serif;
-              background-color: #f8f9fa;
+              font-family: 'Poppins', sans-serif;
+              background-color: #f7f9fc;
               margin: 0;
               padding: 0;
           }
@@ -61,42 +63,90 @@ async function sendEmail(title,imageUrl,content,id,users)
               max-width: 600px;
               margin: 20px auto;
               background: #ffffff;
-              border: 1px solid #dee2e6;
-              border-radius: 8px;
+              border: 1px solid #e0e4e7;
+              border-radius: 10px;
               overflow: hidden;
-              box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+              box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
           }
           .email-header {
-              background: linear-gradient(45deg, #ff9a9e, #fad0c4, #fbc2eb);
+              background: linear-gradient(135deg, #6a82fb, #fc5c7d);
               color: white;
               text-align: center;
               padding: 20px;
-              font-family: 'Arial', sans-serif;
-              font-size: 1.5rem;
+              font-size: 2rem;
+              font-weight: 600;
           }
           .email-footer {
               background: #f1f1f1;
               text-align: center;
-              padding: 15px;
+              padding: 20px;
               font-size: 14px;
               color: #6c757d;
           }
+              *{
+          text-align:left;
+                        font-family: 'Poppins', sans-serif;
+
+          }
           .blog-card {
-              padding: 20px;
+              padding: 25px;
+              text-align: center;
+          }
+          .card-title {
+              font-size: 1.75rem;
+              font-weight: 600;
+              margin-bottom: 20px;
           }
           img {
-              max-width: 100%; /* Makes the image responsive */
-              height: auto; /* Maintains the aspect ratio */
-              display: block; /* Removes extra space below the image */
-              margin: 0 auto; /* Centers the image */
+              max-width: 100%;
+              height: auto;
+              display: block;
+              margin: 0 auto 20px;
+              border-radius: 10px;
           }
           a {
-              padding: 20px;
-              display: inline-block;
-              background-color: blue;
-              color: white;
+              padding: 5px;
+              color: blue;
               text-decoration: none;
               border-radius: 5px;
+              font-weight: 500;
+              display: inline-block;
+          }
+          a:hover {
+              background-color: #5a72d4;
+          }
+
+          /* Styling for headers */
+          h1, h2, h3, h4, h5, h6 {
+              color: #333;
+              font-weight: 400;
+              margin-bottom: 15px;
+          }
+          h1 {
+              font-size: 2rem;
+              font-size:bolder;
+              color:white;
+          }
+          h2 {
+              font-size: 1.75rem;
+              font-weight:bold;
+          }
+          h3 {
+              font-size: 1.25rem;
+          }
+          
+          /* Styling for unordered lists and list items */
+          ul {
+              text-align: left;
+              margin: 20px 0;
+              padding-left: 20px;
+          }
+          li {
+              font-size: 16px;
+              line-height: 1.6;
+              color: #555;
+              margin-bottom: 10px;
+              text-align:left;
           }
       </style>
   </head>
@@ -105,7 +155,7 @@ async function sendEmail(title,imageUrl,content,id,users)
           <!-- Header -->
           <div class="email-header">
               <h1>Hello, Nrima!</h1>
-              <h2>Resource to help you in Germany!</h2>
+              <h2>Latest Resource to Help You in Germany</h2>
           </div>
 
           <!-- Blog Content Card -->
@@ -115,13 +165,11 @@ async function sendEmail(title,imageUrl,content,id,users)
                       <h2 class="card-title">Latest Blog Post</h2>
                       <div id="htmlContent">
                           <!-- Blog content goes here -->
-                          <p>Welcome to our latest blog post. We share exciting updates, insights, and stories here!</p>
-                          <div>
-                              <img src="https://res.cloudinary.com/dqcyqnwxj/image/upload/v1737494245/freepik__expand__98493_pod4l8.png" alt="Blog Image">
-                          </div>
+                          <p>Welcome to our latest blog post. We share exciting updates, insights, and stories here to help you navigate your journey!</p>
+                          <img src="https://res.cloudinary.com/dqcyqnwxj/image/upload/v1737494245/freepik__expand__98493_pod4l8.png" alt="Blog Image">
                           <h2>${title}</h2>
-                          ${content}
-                          <a href="http://localhost:4200/fullBlogPost?id=${id}">Go to Website</a>
+                          <p>${content}</p>
+                          <a href="http://localhost:4200/fullBlogPost?id=${id}">Go to Full Blog Post</a>
                       </div>
                   </div>
               </div>
@@ -134,7 +182,9 @@ async function sendEmail(title,imageUrl,content,id,users)
           </div>
       </div>
   </body>
-  </html>
+</html>
+
+
 
   `
     
@@ -156,7 +206,7 @@ async function sendEmail(title,imageUrl,content,id,users)
           const mailOptions = {
             from: 'santosgayak1@gmail.com', // Sender's email
             to:subscriber.email, // Recipient's email
-            subject: 'Test Email from Node.js', // Email subject
+            subject: 'Daily Job Search Help Resource', // Email subject
             html: emailTemplate, // HTML body
           };
 
@@ -184,7 +234,7 @@ async function sendEmail(title,imageUrl,content,id,users)
         const mailOptions = {
           from: 'santosgayak1@gmail.com', // Sender's email
           to:user.email, // Recipient's email
-          subject: 'Test Email from Node.js', // Email subject
+          subject: 'Daily Job Search Help Resource', // Email subject
           html: emailTemplate, // HTML body
         };
     
@@ -339,31 +389,35 @@ cron.schedule('*/1 * * * *', async () => {
 
 const openai = new OpenAIApi(configuration);
 const contentInstructions = [
-  "How to Overcome Impostor Syndrome While Job Hunting in Germany. Write a blog on this, providing strategies for emotional support and confidence building. Include subheadings, bullets, and helpful links. For the last paragraph, only provide a number for read time in minutes, do not include Read time: for the blog you have written.",
-  "How to Make the Most of Your Job Seeker Visa in Germany. Write a blog on this. Feel free to include subheadings, bullets, links to useful resources in Germany. For the last paragraph, only provide a number for read time in minutes, do not include Read time: for the blog you have written.",
-  "Top 10 Job Portals in Germany for Business and Finance Professionals. Write a blog on this. Feel free to include subheadings, bullets, links to useful resources in Germany. For the last paragraph, only provide a number for read time in minutes, do not include Read time: for the blog you have written.",
-  "A Step-by-Step Guide to Building a Professional Resume for Germany. Write a blog on this. Feel free to include subheadings, bullets, links to useful resources in Germany. For the last paragraph, only provide a number for read time in minutes, do not include Read time: for the blog you have written.",
-  "How to Tailor Your Cover Letter for German Employers. Write a blog on this. Feel free to include subheadings, bullets, links to useful resources in Germany. For the last paragraph, only provide a number for read time in minutes, do not include Read time: for the blog you have written.",
-  "Mastering German Business Culture: Tips for International Job Seekers. Write a blog on this. Feel free to include subheadings, bullets, links to useful resources in Germany. For the last paragraph, only provide a number for read time in minutes, do not include Read time: for the blog you have written.",
-  "Networking in Germany: How to Build Professional Connections Effectively. Write a blog on this. Feel free to include subheadings, bullets, links to useful resources in Germany. For the last paragraph, only provide a number for read time in minutes, do not include Read time: for the blog you have written.",
-  "The Best LinkedIn Strategies to Land a Job in Germany. Write a blog on this. Feel free to include subheadings, bullets, links to useful resources in Germany. For the last paragraph, only provide a number for read time in minutes, do not include Read time: for the blog you have written.",
-  "Understanding Germany’s Finance Job Market: Key Insights for Foreigners. Write a blog on this. Feel free to include subheadings, bullets, links to useful resources in Germany. For the last paragraph, only provide a number for read time in minutes, do not include Read time: for the blog you have written.",
-  "How to Identify Companies Hiring English-Speaking Professionals in Germany. Write a blog on this. Feel free to include subheadings, bullets, links to useful resources in Germany. For the last paragraph, only provide a number for read time in minutes, do not include Read time: for the blog you have written.",
-  "The Importance of Learning German for Your Career in Germany. Write a blog on this. Feel free to include subheadings, bullets, links to useful resources in Germany. For the last paragraph, only provide a number for read time in minutes, do not include Read time: for the blog you have written.",
-  "10 Common Interview Questions in Germany and How to Answer Them. Write a blog on this. Feel free to include subheadings, bullets, links to useful resources in Germany. For the last paragraph, only provide a number for read time in minutes, do not include Read time: for the blog you have written.",
-  "How to Find Finance-Related Jobs in Germany Without Fluent German. Write a blog on this. Feel free to include subheadings, bullets, links to useful resources in Germany. For the last paragraph, only provide a number for read time in minutes, do not include Read time: for the blog you have written.",
-  "How to Stay Positive During a Job Search in Germany. Write a blog on this, including emotional support tips and strategies to overcome discouragement. Feel free to include subheadings, bullets, and helpful links. For the last paragraph, only provide a number for read time in minutes, do not include Read time: for the blog you have written.",
-  "Finding a Support System While Job Hunting in Germany. Write a blog on this, emphasizing emotional well-being, online communities, and local support groups. Include subheadings, bullets, and links to helpful resources. For the last paragraph, only provide a number for read time in minutes, do not include Read time: for the blog you have written.",
-  "The Role of an MBA in Germany’s Competitive Job Market. Write a blog on this. Feel free to include subheadings, bullets, and links to useful resources in Germany. For the last paragraph, only provide a number for read time in minutes, do not include Read time: for the blog you have written.",
-  "How to Cope with Loneliness as a Newcomer in Germany. Write a blog on this, including tips on making friends, staying connected with family, and exploring social activities. Feel free to include subheadings, bullets, and links to helpful resources. For the last paragraph, only provide a number for read time in minutes, do not include Read time: for the blog you have written.",
-  "Why Munich and Frankfurt are the Best Cities for Finance Professionals. Write a blog on this. Feel free to include subheadings, bullets, and links to useful resources in Germany. For the last paragraph, only provide a number for read time in minutes, do not include Read time: for the blog you have written.",
-  "How to Optimize Your Job Applications Using German Application Standards. Write a blog on this. Feel free to include subheadings, bullets, and links to useful resources in Germany. For the last paragraph, only provide a number for read time in minutes, do not include Read time: for the blog you have written.",
-  "How to Build Confidence While Job Searching in Germany. Write a blog on this, focusing on emotional support, positive affirmations, and small wins during the process. Feel free to include subheadings, bullets, and links to helpful resources. For the last paragraph, only provide a number for read time in minutes, do not include Read time: for the blog you have written.",
-  "The Best Cities in Germany for Business Professionals. Write a blog on this. Feel free to include subheadings, bullets, and links to helpful resources in Germany. For the last paragraph, only provide a number for read time in minutes, do not include Read time: for the blog you have written.",
-  "Tips for Job Seekers to Maintain Work-Life Balance in Germany. Write a blog on this, with a focus on emotional health and managing stress. Feel free to include subheadings, bullets, and links to resources. For the last paragraph, only provide a number for read time in minutes, do not include Read time: for the blog you have written.",
-  "Why Frankfurt is the Financial Hub for English-Speaking Professionals. Write a blog on this. Feel free to include subheadings, bullets, and links to helpful resources in Germany. For the last paragraph, only provide a number for read time in minutes, do not include Read time: for the blog you have written.",
-  "How to Create a Gratitude Practice While Job Searching in Germany. Write a blog on this, highlighting emotional resilience and gratitude exercises. Feel free to include subheadings, bullets, and links to resources. For the last paragraph, only provide a number for read time in minutes, do not include Read time: for the blog you have written.",
+    "How to Build a Network for Business Jobs in Germany. Write a blog on this, explaining the importance of networking in Germany and how to leverage platforms like LinkedIn, events, and industry groups. Include subheadings, bullets, and helpful links. For the last paragraph, only provide a number for read time in minutes, do not include Read time: for the blog you have written.",
+    "How to Format Your Resume for Business Jobs in Germany. Write a blog on this, explaining the unique formatting standards for resumes in Germany, common mistakes to avoid, and tips for a successful application. Include subheadings, bullets, and links to resume-building tools. For the last paragraph, only provide a number for read time in minutes, do not include Read time: for the blog you have written.",
+    "How to Write a Strong Cover Letter for Business Jobs in Germany. Write a blog offering guidance on how to write a compelling cover letter, highlighting key elements to include and common pitfalls to avoid in Germany. For the last paragraph, only provide a number for read time in minutes, do not include Read time: for the blog you have written.",
+    "How to Use LinkedIn to Find Business and Finance Jobs in Germany. Write a blog on this, providing strategies for optimizing your LinkedIn profile, connecting with recruiters, and finding job opportunities in Germany. Include subheadings, bullets, and helpful links. For the last paragraph, only provide a number for read time in minutes, do not include Read time: for the blog you have written.",
+    "Building a Strong German Resume (CV) for Business Jobs. Write a blog on this, explaining the format and key elements of a successful German resume for business and finance roles, including common mistakes to avoid. Include subheadings, bullets, and links to resume-building tools. For the last paragraph, only provide a number for read time in minutes, do not include Read time: for the blog you have written.",
+    "How to Prepare for Job Interviews in Germany’s Business Sector. Write a blog on this, giving insights into German interview culture, common questions, and best practices to succeed in interviews. Include subheadings, bullets, and helpful links. For the last paragraph, only provide a number for read time in minutes, do not include Read time: for the blog you have written.",
+    "Navigating the German Job Market as an International MBA Graduate. Write a blog on this, offering advice on how international candidates can adapt to Germany’s job market, cultural nuances, and hiring practices. Include subheadings, bullets, and links to useful resources. For the last paragraph, only provide a number for read time in minutes, do not include Read time: for the blog you have written.",
+    "Exploring Business and Finance Opportunities in Germany’s FinTech Industry. Write a blog on this, explaining the growth of the FinTech sector in Germany and highlighting key companies and roles for MBA graduates. Include subheadings, bullets, and links to relevant industry reports. For the last paragraph, only provide a number for read time in minutes, do not include Read time: for the blog you have written.",
+    "Internships and Trainee Programs in Germany for MBA Graduates. Write a blog on this, discussing how internships and trainee programs are key entry points into Germany’s business and finance industries. Include subheadings, bullets, and links to major internship portals. For the last paragraph, only provide a number for read time in minutes, do not include Read time: for the blog you have written.",
+    "How to Set a Routine for Job Applications in Germany. Write a blog on this, offering strategies for creating an efficient job application routine, including time management tips and how to stay organized during the process. For the last paragraph, only provide a number for read time in minutes, do not include Read time: for the blog you have written.",
+    "How Many Jobs Should You Apply for Daily? A Guide for MBA Graduates in Germany. Write a blog offering advice on how many jobs to apply for on a daily basis and how to track your applications effectively. For the last paragraph, only provide a number for read time in minutes, do not include Read time: for the blog you have written.",
+    "How to Handle Rejection and Build Resilience in Your German Job Search. Write a blog on how to bounce back after rejection, stay motivated, and build resilience during the job application process in Germany. For the last paragraph, only provide a number for read time in minutes, do not include Read time: for the blog you have written.",
+    "Coping with Job Search Fatigue: How to Keep Going When You Feel Burnt Out in Germany. Write a blog focusing on how to recognize burnout during a job search, and strategies for recharging, maintaining a work-life balance, and staying healthy during the process in Germany. For the last paragraph, only provide a number for read time in minutes, do not include Read time: for the blog you have written.",
+    "How to Stay Motivated During Your MBA Job Search in Germany. Write a blog on how to stay focused and motivated throughout the job search process, offering tips for managing expectations and overcoming self-doubt. For the last paragraph, only provide a number for read time in minutes, do not include Read time: for the blog you have written.",
+    "Top Cities in Germany for Business and Finance Jobs. Write a blog on this, highlighting the best locations for business professionals to seek job opportunities in Germany, including cities with strong job markets. Include subheadings, bullets, and useful links. For the last paragraph, only provide a number for read time in minutes, do not include Read time: for the blog you have written.",
+    "How to Leverage Job Fairs and Career Events in Germany to Land a Business Role. Write a blog offering tips on how to network and make the most of job fairs and career events in Germany. For the last paragraph, only provide a number for read time in minutes, do not include Read time: for the blog you have written.",
+    "Understanding Salary Expectations for Business Roles in Germany. Write a blog on this, providing insights into average salaries for business and finance professionals in Germany, including factors that influence pay levels. Include subheadings, bullets, and helpful links. For the last paragraph, only provide a number for read time in minutes, do not include Read time: for the blog you have written.",
+    "How to Stand Out in Germany's Highly Competitive Business Job Market. Write a blog on this, offering strategies to differentiate yourself from other candidates, including personal branding, certifications, and networking. For the last paragraph, only provide a number for read time in minutes, do not include Read time: for the blog you have written.",
+    "How to Build Mental Resilience for Job Seekers in Germany. Write a blog offering tips and techniques for building mental resilience in the face of job search difficulties, including advice on stress management and maintaining a positive outlook. For the last paragraph, only provide a number for read time in minutes, do not include Read time: for the blog you have written.",
+    "Job Search Resources for MBA Graduates in Germany. Write a blog on this, compiling a list of websites, career fairs, and recruitment agencies that specialize in business and finance roles in Germany. Include subheadings, bullets, and links to these resources. For the last paragraph, only provide a number for read time in minutes, do not include Read time: for the blog you have written.",
+    "How to Overcome Job Search Stress and Stay Positive When Jobs Are Hard to Find in Germany. Write a blog discussing how to handle stress and feelings of discouragement when job opportunities are scarce, and how to stay hopeful and proactive in the search. For the last paragraph, only provide a number for read time in minutes, do not include Read time: for the blog you have written.",
+    "How to Tailor Your Resume for Business Roles in Germany. Write a blog on how to customize your resume for different business and finance roles, providing practical tips on how to align your skills and experience with job descriptions. For the last paragraph, only provide a number for read time in minutes, do not include Read time: for the blog you have written.",
+    "How to Write a Winning Cover Letter for Business Jobs in Germany. Write a blog on the key elements of a compelling cover letter, tailored to the German job market, including tips on structure and language. For the last paragraph, only provide a number for read time in minutes, do not include Read time: for the blog you have written.",
+    "How to Use Job Search Websites Effectively in Germany. Write a blog offering tips on how to use popular German job search websites to find business and finance jobs, with recommendations on job search strategies and tools. For the last paragraph, only provide a number for read time in minutes, do not include Read time: for the blog you have written.",
+    "How to Stay Organized During Your MBA Job Search in Germany. Write a blog offering advice on how to stay organized throughout the job application process, including tools and strategies for managing your time, documents, and deadlines. For the last paragraph, only provide a number for read time in minutes, do not include Read time: for the blog you have written.",
+    "Overcoming Self-Doubt During Your Job Search in Germany: Building Confidence. Write a blog offering guidance on overcoming self-doubt and fear of failure during the job search, with a focus on building confidence in the process. For the last paragraph, only provide a number for read time in minutes, do not include Read time: for the blog you have written.",
+    "How to Improve Your German Language Skills for Job Opportunities. Write a blog on the importance of learning German for business roles in Germany and recommend free resources, apps, and tools to help improve your skills. For the last paragraph, only provide a number for read time in minutes, do not include Read time: for the blog you have written."
 ];
+
 let currentIndex = 0;
 
 function getNextTitle(titles) {
@@ -413,15 +467,22 @@ async function generateContent() {
     // Finalize the HTML content
     const finalHtmlContent = $.html();
 
-    // Create a new blog post document
     const newPost = new BlogPost({
-      authorName: "Santosh Gayak",
-      blogTitle: blogTitle,
-      imageUrl: blogImageUrl,
-      readTime: readTime,
-      content: finalHtmlContent,
-      date: new Date().toISOString(),
-    });
+        category: "Job Opportunity Germany",
+        authorName: "Santosh Gayak",
+        blogTitle: blogTitle,
+        imageUrl:blogImageUrl,
+        readTime: readTime,
+        content: finalHtmlContent,
+        comments: [{ 
+          authorName: "Admin", 
+          content: "Please use kind and constructive words", 
+          upvotes: 0 ,
+          date:new Date()
+        }], 
+        likes: 0,
+        date: new Date(),
+      });
     // Save the blog post to the database
     await newPost.save();
     const subscribers = await getSubscribers();
