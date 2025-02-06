@@ -169,7 +169,7 @@ async function sendEmail(title,imageUrl,content,id,users)
                           <img src="https://res.cloudinary.com/dqcyqnwxj/image/upload/v1737494245/freepik__expand__98493_pod4l8.png" alt="Blog Image">
                           <h2>${title}</h2>
                           <p>${content}</p>
-                          <a href="http://localhost:4200/fullBlogPost?id=${id}">Go to Full Blog Post</a>
+                          <a href="https://technology-blog-backend.onrender.com/fullBlogPost?id=${id}">Go to Full Blog Post</a>
                       </div>
                   </div>
               </div>
@@ -575,6 +575,7 @@ app.get('/posts', (req, res) => {
             blogTitle: post.blogTitle,
             imageUrl: post.imageUrl,
             readTime: post.readTime,
+            comments: post.comments,
             likes:post.likes,
             date: post.date,
           };
